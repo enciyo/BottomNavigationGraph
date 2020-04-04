@@ -1,12 +1,11 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import android.view.MenuItem
-import androidx.activity.addCallback
+import androidx.core.view.children
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.IllegalStateException

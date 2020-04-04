@@ -1,4 +1,4 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,7 +8,6 @@ import android.widget.RelativeLayout
 import androidx.annotation.IdRes
 import androidx.navigation.NavController
 import androidx.viewpager2.widget.ViewPager2
-import com.enciyo.navigationarch.R
 import kotlinx.android.synthetic.main.navigation_arch_base_view.view.*
 
 

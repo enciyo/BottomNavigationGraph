@@ -1,4 +1,4 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle

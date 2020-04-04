@@ -1,11 +1,10 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.enciyo.navigationarch.R
 
 
 class NavigationArchBaseAdapter(

@@ -1,16 +1,9 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import android.os.Bundle
 import androidx.annotation.NavigationRes
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import com.enciyo.navigationarch.R
-import kotlinx.android.synthetic.main.nav_navigation_arch_base.*
 
 
 class NavigationArchBaseFragment : Fragment(R.layout.nav_navigation_arch_base) {

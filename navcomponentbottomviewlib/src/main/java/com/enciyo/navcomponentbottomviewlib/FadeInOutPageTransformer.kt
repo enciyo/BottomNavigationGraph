@@ -1,4 +1,4 @@
-package com.enciyo.navigationarchlibrary.base
+package com.enciyo.navcomponentbottomviewlib
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

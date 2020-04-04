@@ -1,3 +1,2 @@
 rootProject.name='NavComponentBottomView'
-include ':app'
 include ':navcomponentbottomviewlib'

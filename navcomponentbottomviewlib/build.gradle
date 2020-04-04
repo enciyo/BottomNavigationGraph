@@ -1,25 +1,23 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
+
 
 group = 'com.github.enciyo'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
         versionCode 1
         versionName "1.0.5"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 

@@ -57,7 +57,7 @@ class NavigationArchBaseManagementImp(
 
     private fun setPageConfig(position: Int) {
         if (mView?.viewPager?.currentItem!=position) {
-            mView?.viewPager?.currentItem = position
+            mView?.viewPager?.setCurrentItem(position,false)
             mBackStack.push(position)
         }
 

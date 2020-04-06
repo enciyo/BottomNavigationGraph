@@ -1,6 +1,7 @@
 package com.enciyo.navcomponentbottomviewlib
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.NavigationRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
@@ -21,8 +22,9 @@ class NavigationArchBaseFragment : Fragment(R.layout.nav_navigation_arch_base) {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         arguments?.getInt("layoutRes", 0).also { layoutRes ->
             if (layoutRes!=null && layoutRes!=0) {
                 NavHostFragment.create(layoutRes).also {
@@ -34,7 +36,6 @@ class NavigationArchBaseFragment : Fragment(R.layout.nav_navigation_arch_base) {
             }
         }
     }
-
 
 
 }

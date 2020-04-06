@@ -28,17 +28,9 @@ class NavigationArcBaseBuilder(navigationArchBaseView: NavigationArchBaseView) {
     }
 
     fun build(fragmentManager: FragmentManager): NavigationArchBaseManagementImp {
-        val mNavigationArchBaseFragments = mutableListOf<NavigationArchBaseFragment>()
-        (mNavGraphs ?: throw IllegalStateException("must be used setNavGraphs()")).forEach {
-            mNavigationArchBaseFragments.add(NavigationArchBaseFragment.newInstanceNavigationArchBaseFragment(it))
-        }
-
         return NavigationArchBaseManagementImp(
-            WeakReference(NavigationArchBaseAdapter(
-                mNavigationArchBaseFragments,
-                fragmentManager,
-                mLifecycle ?: throw IllegalStateException("must be used setLifecycle()")
-            )),
+            fragmentManager,
+            mNavGraphs ?: throw IllegalStateException("Not find NavGraphs"),
             mNavigationArchBaseView,
             mLifecycle ?: throw IllegalStateException("must be used setLifecycle()"),
             mBottomNavigationView ?: throw IllegalStateException("must be used setBottomNavigationView()")

@@ -27,11 +27,15 @@ class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : Re
         }
 
     val currentNavController: NavController?
-        get() = adapter?.getNavController(viewPager?.currentItem ?: throw Throwable("Not find fragment "))
+        get() = try {
+            adapter?.getNavController(viewPager?.currentItem ?: throw Throwable("Not find fragment "))
+        } catch (e: Exception) {
+            null
+        }
 
 
     init {
-        with(mView.viewPager2Fragments){
+        with(mView.viewPager2Fragments) {
             isUserInputEnabled = false
             setPageTransformer(FadeInOutPageTransformer())
         }

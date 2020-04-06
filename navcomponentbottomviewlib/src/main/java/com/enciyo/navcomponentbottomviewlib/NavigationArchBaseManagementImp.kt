@@ -2,10 +2,12 @@ package com.enciyo.navcomponentbottomviewlib
 
 import android.view.MenuItem
 import androidx.core.view.children
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.IllegalStateException
@@ -14,7 +16,8 @@ import java.util.*
 
 
 class NavigationArchBaseManagementImp(
-    private val mNavigationArchBaseAdapter: WeakReference<NavigationArchBaseAdapter>,
+    private val mFragmentManager: FragmentManager,
+    private val mNavGraph: IntArray,
     private val mNavigationArchBaseView: WeakReference<NavigationArchBaseView>,
     lifecycle: Lifecycle,
     private val mBottomNavigationView: WeakReference<BottomNavigationView>
@@ -23,6 +26,14 @@ class NavigationArchBaseManagementImp(
 
 
     private val mBackStack = Stack<Int>()
+
+    private val mNavigationArchBaseAdapter by lazy {
+        NavigationArchBaseAdapter(
+            mNavGraph,
+            mFragmentManager,
+            lifecycle
+        )
+    }
 
     private val onPageChangeListener = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
@@ -33,18 +44,20 @@ class NavigationArchBaseManagementImp(
 
 
     init {
-
         if (mBackStack.empty()) mBackStack.push(0)
         lifecycle.addObserver(this)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    fun onCreated() {
         mNavigationArchBaseView.get()?.let {
-            it.adapter = mNavigationArchBaseAdapter.get()
+            it.adapter = mNavigationArchBaseAdapter
             it.viewPager.registerOnPageChangeCallback(onPageChangeListener)
         }
         mBottomNavigationView.get()?.let {
             it.setOnNavigationItemSelectedListener(this)
             it.setOnNavigationItemReselectedListener(this)
         }
-
     }
 
     private val mView
@@ -57,7 +70,7 @@ class NavigationArchBaseManagementImp(
 
     private fun setPageConfig(position: Int) {
         if (mView?.viewPager?.currentItem!=position) {
-            mView?.viewPager?.setCurrentItem(position,false)
+            mView?.viewPager?.setCurrentItem(position, false)
             mBackStack.push(position)
         }
 
@@ -72,9 +85,7 @@ class NavigationArchBaseManagementImp(
 
 
     override fun onBackPressed(): Boolean {
-        val position = mView?.viewPager?.currentItem
-        val hostedFragment = mNavigationArchBaseAdapter.get()?.getNavController(position ?: throw
-        IllegalStateException("onBackPressed() -> not find current item $position"))?.popBackStack()
+        val hostedFragment = mView?.currentNavController?.popBackStack()
         return if (hostedFragment==false) {
             if (mBackStack.size > 1) {
                 mBackStack.pop()
@@ -89,7 +100,6 @@ class NavigationArchBaseManagementImp(
     fun removeViewReferences() {
         mNavigationArchBaseView.get()?.viewPager?.unregisterOnPageChangeCallback(onPageChangeListener)
         mNavigationArchBaseView.clear()
-        mNavigationArchBaseAdapter.clear()
         mBottomNavigationView.clear()
     }
 
@@ -105,9 +115,7 @@ class NavigationArchBaseManagementImp(
 
 
     override fun popToRoot() {
-        val position = mView?.viewPager?.currentItem
-        val navController = mNavigationArchBaseAdapter.get()?.getNavController(position ?: throw
-        IllegalStateException("onBackPressed() -> not find current item $position"))
+        val navController = mView?.currentNavController
         navController?.popBackStack(navController.graph.startDestination, false)
     }
 

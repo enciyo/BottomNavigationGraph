@@ -1,4 +1,4 @@
-package com.enciyo.navcomponentbottomviewlib
+package com.enciyo.bottomnavigationgprah
 
 import android.content.Context
 import android.util.AttributeSet
@@ -11,7 +11,8 @@ import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.navigation_arch_base_view.view.*
 
 
-class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : RelativeLayout(context, attributeSet) {
+class BottomNavigationGraphHostViewPager(context: Context, attributeSet: AttributeSet?) : RelativeLayout(context, attributeSet) {
+
 
 
     private val mView = View.inflate(context, R.layout.navigation_arch_base_view, this)
@@ -20,7 +21,7 @@ class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : Re
         get() = mView.findViewById<ViewPager2>(R.id.viewPager2Fragments)
 
 
-    var adapter: NavigationArchBaseAdapter? = null
+    var adapterBottom: BottomNavigationGraphAdapter? = null
         set(value) {
             field = value
             setupViewPager2Fragments(value)
@@ -28,7 +29,7 @@ class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : Re
 
     val currentNavController: NavController?
         get() = try {
-            adapter?.getNavController(viewPager?.currentItem ?: throw Throwable("Not find fragment "))
+            adapterBottom?.getNavController(viewPager?.currentItem ?: throw Throwable("Not find fragment "))
         } catch (e: Exception) {
             null
         }
@@ -37,7 +38,7 @@ class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : Re
     init {
         with(mView.viewPager2Fragments) {
             isUserInputEnabled = false
-            setPageTransformer(FadeInOutPageTransformer())
+            setPageTransformer(BottomNavigationGraphPageAdapterTransformer())
         }
     }
 
@@ -51,7 +52,7 @@ class NavigationArchBaseView(context: Context, attributeSet: AttributeSet?) : Re
     }
 
 
-    private fun setupViewPager2Fragments(value: NavigationArchBaseAdapter?) {
+    private fun setupViewPager2Fragments(value: BottomNavigationGraphAdapter?) {
         viewPager.adapter = value
     }
 

@@ -1,4 +1,4 @@
-package com.enciyo.navcomponentbottomviewlib
+package com.enciyo.bottomnavigationgprah
 
 import org.junit.Test
 

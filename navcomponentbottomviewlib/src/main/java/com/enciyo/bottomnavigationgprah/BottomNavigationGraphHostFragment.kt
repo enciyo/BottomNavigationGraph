@@ -1,4 +1,4 @@
-package com.enciyo.navcomponentbottomviewlib
+package com.enciyo.bottomnavigationgprah
 
 import android.os.Bundle
 import android.view.View
@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 
 
-class NavigationArchBaseFragment : Fragment(R.layout.nav_navigation_arch_base) {
+class BottomNavigationGraphHostFragment : Fragment(R.layout.nav_navigation_arch_base) {
 
 
     companion object {
-        fun newInstanceNavigationArchBaseFragment(@NavigationRes graphId: Int): NavigationArchBaseFragment {
-            return NavigationArchBaseFragment().also { fragment ->
+        fun newInstanceNavigationArchBaseFragment(@NavigationRes graphId: Int): BottomNavigationGraphHostFragment {
+            return BottomNavigationGraphHostFragment().also { fragment ->
                 Bundle().apply {
                     putInt("layoutRes", graphId)
                 }.also {

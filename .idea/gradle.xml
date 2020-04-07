@@ -11,7 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/navcomponentbottomviewlib" />
+            <option value="$PROJECT_DIR$/bottomnavigationgraph" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

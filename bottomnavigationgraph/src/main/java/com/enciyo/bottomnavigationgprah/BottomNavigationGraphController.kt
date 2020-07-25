@@ -32,6 +32,8 @@ internal class BottomNavigationGraphController(
 
     private val mBackStack = Stack<Int>()
 
+
+
     private val mNavigationArchBaseAdapter by lazy {
         BottomNavigationGraphAdapter(
             mNavGraph,
@@ -45,6 +47,7 @@ internal class BottomNavigationGraphController(
     init {
         if (mBackStack.empty()) mBackStack.push(0)
         lifecycle.addObserver(this)
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)

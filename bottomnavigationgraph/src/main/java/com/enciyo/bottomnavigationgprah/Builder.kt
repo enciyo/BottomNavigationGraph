@@ -20,6 +20,8 @@ class Builder {
     var fragmentManager: FragmentManager? = null
         private set
 
+
+
     var bottomNavigationGraphHostViewPager: WeakReference<BottomNavigationGraphHostViewPager>? = null
         private set
 

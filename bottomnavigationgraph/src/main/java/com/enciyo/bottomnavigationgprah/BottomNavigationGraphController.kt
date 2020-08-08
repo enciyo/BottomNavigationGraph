@@ -111,8 +111,8 @@ internal class BottomNavigationGraphController(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun removeViewReferences() {
-        mBottomNavigationGraphHostViewPager.clear()
-        mBottomNavigationView.clear()
+      // mBottomNavigationGraphHostViewPager.clear()
+      // mBottomNavigationView.clear()
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {

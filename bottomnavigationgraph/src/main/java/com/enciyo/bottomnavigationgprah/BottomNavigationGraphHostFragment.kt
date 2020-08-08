@@ -25,13 +25,15 @@ class BottomNavigationGraphHostFragment : Fragment(R.layout.nav_navigation_arch_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.getInt("graphResourceID", 0).also { graphResourceID ->
-            if (graphResourceID!=null && graphResourceID!=0) {
-                NavHostFragment.create(graphResourceID).also {
-                    childFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerNavNavigationArchBase, it)
-                        .setPrimaryNavigationFragment(it)
-                        .commit()
+        if (savedInstanceState == null){
+            arguments?.getInt("graphResourceID", 0).also { graphResourceID ->
+                if (graphResourceID!=null && graphResourceID!=0) {
+                    NavHostFragment.create(graphResourceID).also {
+                        childFragmentManager.beginTransaction()
+                            .replace(R.id.fragmentContainerNavNavigationArchBase, it)
+                            .setPrimaryNavigationFragment(it)
+                            .commit()
+                    }
                 }
             }
         }
